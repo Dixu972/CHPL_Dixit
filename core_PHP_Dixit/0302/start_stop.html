@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jqueryCDN.js"></script>
+    <style>
+        .box {
+            background-color: aquamarine;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">Start Animation</button>
+    <button id="btn2">Stop Animation</button>
+    <br>
+    <br>
+    <div class="box"></div>
+    <script>
+        $(document).ready(function(){
+
+            $("#btn1").click(function(){
+                $(".box").animate({left: '300px',top : '100px'},4000);
+            });
+            $("#btn2").click(function(){
+                $(".box").stop();
+            })
+        });
+    </script>
+</body>
+
+</html>

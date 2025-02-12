@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-6 h1 text-center text-warning">Accordian Task</div>
+            <hr>
+            <div class="col-md-8 col-sm-4 offset-2">
+                <div id="accordion col-sm-4 offset-4">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <a class="btn text-primary" data-bs-toggle="collapse" href="#coll-1"><i>What is Your Favourite Books ?</i></a>
+                        </div>
+                        <div id="coll-1" class="collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                                    <b class="text-success">Transcendence : My Spiritual Experiences
+                                        <i>Book by A. P. J. Abdul Kalam and Arun Tiwari
+                                        </i>
+                                    </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <a class="btn text-primary" data-bs-toggle="collapse" href="#coll-2"><i>What is Your Hobbies?</i></a>
+                        </div>
+                        <div id="coll-2" class="collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                                    <b class="text-success">
+                                        <ul>
+                                            <li>Music</li>
+                                            <li>Cricket</li>
+                                            <li>Reading</li>
+                                        </ul>
+                                    </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn text-primary" data-bs-toggle="collapse" href="#coll-3"><i>What is Your Strength?</i></a>
+                        </div>
+                        <div id="coll-3" class="collapse show" data-bs-parent="#accordion">
+                            <div class="card-body">
+                                    <b class="text-success">
+                                        <ul>
+                                            <li>Communication: The ability to communicate effectively</li>
+                                            <li>Writing skills: The ability to write clearly and effectively</li>
+                                            <li>Problem-solving: The ability to analyze situations and find solutions</li>
+                                        </ul>
+                                    </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

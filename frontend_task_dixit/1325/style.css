@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  background-color: #fdfafab0;
+  padding: 20px;
+  text-align: center;
+}
+.header h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  color: yellowgreen;
+  outline-style: double;
+  outline-color: skyblue;
+}
+h2 {
+  /* color: #c8c8c8; */
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: 0.21px;
+  font-family: "EB Garamond", serif;
+}
+h2::first-letter {
+  color: red;
+  font-size: 60px;
+  font-style: italic;
+  margin-left: 10px;
+  border-bottom: 2px solid gainsboro;
+}
+.content img {
+  float: right;
+  margin: 6px 16px;
+}
+.content p {
+  /* text-align: center; */
+  font-size: 22px;
+  margin: 25px 16px;
+  /* line-height: 16px; */
+  letter-spacing: 1px;
+}
+.ig {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  margin-bottom: 20px;
+}
+div.gallery {
+  margin: 24px 14px;
+  border: 1px solid #ccc;
+  /* float: left; */
+  width: 300px;
+}
+div.gallery img {
+  width: 100%;
+  height: 245px;
+  /* display: flex; */
+  min-width: 50%;
+}
+div.gallery:hover {
+  border: 4px solid #eb6e6e;
+  margin: 0px 10px;
+  border-style: inset;
+}
+
+.inquiry {
+  width: 90%;
+  margin: 20px auto;
+  border: 2px solid black;
+}
+input[type="text"],
+[type="number"],
+select {
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  /* box-sizing: border-box; */
+}
+
+input[type="submit"] {
+  width: 15%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+  color: black;
+  font-size: 18px;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.inquiry span {
+  color: red;
+}
+.zindex {
+  width: 90%;
+  margin: 0px auto;
+  position: static;
+  /* display: block; */
+  background-color: aliceblue;
+  height: 76vh;
+}
+.zindex div img {
+  border: 1px solid black;
+}
+.div1 {
+  position: absolute;
+  width: 50%;
+  height: 70vh;
+  left: 32rem;
+  z-index: 0;
+  border: 1px solid black;
+}
+.div2 {
+  position: relative;
+  z-index: 1;
+  width: 10%;
+  left: 17rem;
+  top: -50px;
+}
+.div3 {
+  position: relative;
+  z-index: 2;
+  width: 10%;
+  left: 5rem;
+  top: 340px;
+  opacity: 0.5px;
+}
+.div4 {
+  position: relative;
+  z-index: 3;
+  width: 10%;
+  left: 62rem;
+  top: -50px;
+  height: 150px;
+}
+.div5 {
+  position: relative;
+  z-index: 4;
+  width: 10%;
+  left: 50rem;
+  top: 345px;
+  height: 150px;
+}
+.footer {
+  background-color: #111010;
+  padding: 15px 10px;
+  text-align: center;
+}
+.footer P::first-letter {
+  color: red;
+  border-bottom: 3px solid rgb(238, 233, 233);
+  font-size: larger;
+  font-style: italic;
+}
+.footer p {
+  color: white;
+  font-size: 18px;
+}
+table,
+th,
+td {
+  text-align: center;
+  height: 50px;
+  margin: 20px auto;
+  border: 1px dashed darkorange;
+  z-index: 7;
+}
+table th,
+td,
+tr {
+  padding: 20px 20px;
+  font: bolder;
+  color: black;
+}
+tr:hover {
+  background-color: coral;
+  font-style: italic;
+  font-weight: 900;
+}
+th{
+    font-size: larger;
+    font-weight: 900;
+}
+.ktype{
+    background-image: url(https://media.istockphoto.com/id/655953974/photo/colorful-kite-flying-with-waving-red-bow.jpg?s=612x612&w=0&k=20&c=zKhH6FDvdRCh7E1UfSb-IX_9f6PSW_QUjzQx-cNCPTU=);
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+}

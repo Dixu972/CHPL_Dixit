@@ -1,0 +1,15 @@
+1. SELECT o.total_amount, 
+CASE 
+WHEN total_amount>5000.00 THEN "Premium Order" 
+ELSE "Regular Order" 
+END 
+AS Order_type FROM `Orders` as o;
+
+
+2. SELECT IFNULL(`phone_number`,"Not Provide") AS Null_contact FROM `Customers`;
+
+3.SELECT order_date, DATEDIFF(NOW(),order_date) AS order_ago FROM `Orders`;
+
+4. SELECT * FROM `Orders` WHERE order_date < '2024-01-01';
+
+5.SELECT * FROM `Customers` WHERE name LIKE 'a%';

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .stylediv {
+            background-color: cadetblue;
+            font-style: italic;
+            color: black;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="head">Welcome ! Dixit Patel</h2>
+    <hr>
+    <h3 class="head1">mouseenter</h3>
+    <hr>
+    <h2 id="key">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi illo quaerat eveniet...</h2>
+    <hr>
+    <div class="style">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem, labore!
+    </div>
+    <button class="color">Click Me !</button>
+    <hr>
+    <div id="div1" style="width:80px;height:80px;background-color:rgba(209, 181, 23, 0.685);"></div><br>
+    <div id="div2" style="width:80px;height:80px;background-color:rgb(113, 188, 201);position:re;"></div><br>
+    <div id="div3" style="width:80px;height:80px;background-color:rgb(125, 125, 233);"></div>
+
+    <button class="fade">Fade</button>
+
+    <hr>
+
+    <Button class="animate">Animation</Button>
+
+    <hr>
+
+    <div id="btn" style="background-color: cadetblue; font-size: 22px;text-align: center;">Click to Slide Down</div>
+    <div id="slide" style="display: none;font-size: 36px;color: rgb(219, 182, 133); height: 80px;text-align:center;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nobis dolores, odit eius vitae laboriosam?</div>
+
+    
+
+    <script>
+        $(document).ready(function () 
+        {
+            $(".head").click(function () {
+                $(this).hide();
+            });
+
+            $(".head1").mouseenter(function () {
+                $(this).hide();
+            });
+
+            $("#key").hover(function () {
+                $(this).hide();
+            });
+
+            $(".color").click(function () {
+                $(".style").toggleClass("stylediv");
+            });
+
+            $(".fade").dblclick(function () {
+                $("#div1").fadeToggle();
+                $("#div2").fadeToggle("slow");
+                $("#div3").fadeToggle(3000);
+            });
+
+            $(".animate").mouseup(function () {
+                $("#div2").animate({
+                    left: '200px',
+                    opacity: '0.2',
+                    height: '200px',
+                    width: '300px'
+                    
+                });
+            });
+
+            $("#btn").click(function(){
+                $("#slide").slideToggle("slow");
+            })
+        });
+    </script>
+</body>
+
+</html>

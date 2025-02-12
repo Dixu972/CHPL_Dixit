@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 80%;
+  background-color: rgba(243, 245, 244, 0.726);
+  margin: auto;
+}
+header {
+  display: flex;
+  text-align: center;
+  background-color: #698c6e;
+  top: 0px;
+  overflow: hidden;
+}
+.topnav {
+  float: right;
+  overflow: hidden;
+  margin-top: 30px;
+  margin-left: 580px;
+}
+
+.topnav a {
+  color: #c5b4b4;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+.sidenav {
+  height: 100%;
+  width: 142px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #4c4b4b;
+  padding-top: 80px;
+}
+.sidenav a {
+  padding: 14px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #fbc9c9;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.about_us {
+  width: 100%;
+}
+.about_flex {
+  display: inline-flex;
+}
+h3 {
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 35px;
+}
+.content {
+  width: 50%;
+  margin: 25px;
+}
+.content p {
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 2.5px;
+}
+.content_img {
+  width: 50%;
+}
+.content_img img {
+  display: block;
+  margin: 20px auto;
+  width: 68%;
+}
+.education table {
+  margin: 20px auto;
+  height: 150px;
+  border: 2px dashed blueviolet;
+}
+.education table th {
+  background-color: #e7a3a3;
+  height: 30px;
+}
+.education table td {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  color: rgba(26, 27, 27, 0.781);
+  font-weight: 900;
+}
+
+.iframe_site iframe {
+  margin: 20px 217px;
+  width: 40rem;
+  height: 15rem;
+}
+.contact {
+  width: 100%;
+  background-color: #698c6e;
+  padding: 10px 0px;
+}
+.con-flex {
+  display: flex;
+}
+.lan-known {
+  width: 50%;
+}
+.lan-known h4 {
+  margin-left: 30px;
+  font-size: 22px;
+  font-style: oblique;
+}
+.lan-known ul li {
+  margin: 10px 7rem;
+  font-weight: 400;
+}
+.con-del {
+  width: 50%;
+  margin: 30px 20px;
+}
+.con-del h5 {
+  line-height: 30px;
+  font-size: 18px;
+}
+#copy {
+  text-align: center;
+  margin: 10px auto;
+  color: brown;
+}
+@media only screen and (max-width: 600px) {
+  body {
+    min-width: min-content;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    font-size: 1rem;
+  }
+  .sidenav {
+    display: none;
+  }
+  .iframe_site iframe {
+    margin: 20px 142px;
+    height: 15rem;}
+    .education table td {
+        text-align: center;
+        height: 50px;
+        min-width: 50px;
+        color: rgba(26, 27, 27, 0.781);
+      }
+}
+
