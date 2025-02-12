@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry Form</title>
+    <style>
+        .reg_form h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: 30px auto;
+            line-height: 30px;
+        }
+
+        button {
+            background-color: rgb(135, 135, 224);
+            border: none;
+            padding: 15px 50px;
+            border-radius: 25px;
+            font-weight: 900;
+
+        }
+
+        a {
+            background-color: rgb(135, 135, 224);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="reg_form">
+        <h1><i>Fill The Details :</i></h1>
+        <hr>
+        <form action="action.html" method="post" target="_blank">
+            <table>
+                <tr>
+                    <td>
+                        <label for="fname"><b>First Name :</b></label>
+                        <input type="text" name="fname" id="fname" placeholder="Enter your Name" required>
+                    </td>
+                    <td>
+                        <label for="lname"><b>Last Name :</b></label>
+                        <input type="text" name="lname" id="lname" placeholder="Enter your Last Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="m_no"><b>Mobile No :</b></label>
+                    </td>
+                    <td>
+                        <input type="number" name="m_no" id="m_no" placeholder="+91 00000-00000"
+                            pattern="number[0-9]{10}" minlength="10" maxlength="13" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="state"><b>State :</b></label>
+                    </td>
+                    <td>
+                        <input type="text" name="state" id="state" placeholder="Enter your state" maxlength="10"
+                            required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="City"><b>City :</b></label>
+                    </td>
+                    <td>
+                        <input type="text" name="City" id="City" placeholder="Enter your City" maxlength="10" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gen"><b>Gender :</b></label>
+                    </td>
+                    <td>
+                        <input type="radio" id="gen" name="gen" value="male" />
+                        <label for="gen">Male</label>
+                        <input type="radio" id="gen" name="gen" value="female" />
+                        <label for="gen">Female</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="dob"><b>Date of Birth :</b></label>
+                    </td>
+                    <td>
+                        <input type="date" id="dob" name="dob" value="2002-01-01" min="1990-01-01" max="2025-12-31" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="age"><b>Age :</b></label>
+                    </td>
+                    <td>
+                        <input type="number" id="age" name="age" min="21" max="35" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tech"><b>Choose Your Technology :</b></label>
+                    </td>
+                    <td>
+                        <label for="tech1">PHP</label>
+                        <input type="checkbox" name="tech1" id="tech1" value="php">
+                        <label for="tech2">Laravel</label>
+                        <input type="checkbox" name="tech2" id="tech2" value="laravel">
+                        <label for="tech3">Codeigniter</label>
+                        <input type="checkbox" name="tech3" id="tech3" value="codeigniter">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Submit Data</button>
+                        <a href="index.html" type="button">Back To Home</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</body>
+
+</html>

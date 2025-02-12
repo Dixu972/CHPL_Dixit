@@ -1,0 +1,132 @@
+1. insert Query :
+
+INSERT INTO customers VALUES ('1','CHPL','Dixit','maninagar','ahmedabad','india','382448','gujrat','9725426047','2002-01-25','24');
+
+INSERT INTO customers (`CustomerID`, `CompanyName`, `ContactName`, `Address`, `City`, `Region`, `PostalCode`, `State`, `Phone`, `DOB`, `Age`) VALUES ('','sunpharma','mehul','sayajirav','baroda','hindu','387752','gujrat','8866776595','1999-12-01','25');
+
+INSERT INTO customers VALUES 
+('','CHPL','Dixit','maninagar','ahmedabad','india','382448','gujrat','9725426047','2002-01-25','24'),
+('','brainwire','purva','vastral','ahmedabad','india','380158','gujrat','8575485694','1998-27-06','30'),
+('','lic','kirti','kapadwanj','kheda','india','387620','gujrat','972546856','1965-05-24','54'),
+('','BOB','mohan','ramol','ahmedabad','india','382449','gujrat','5468978544','1995-07-25','32'),
+('','Crest','savita','chandkheda','ahmedabad','india','380019','gujrat','7854956721','1997-02-26','24'),
+('','Tops','guru','dantali','kapadwanj','india','387620','gujrat','8401672564','2001-06-12','18');
+
+2. Select Query :
+
+SELECT * FROM customers;
+
+SELECT CompanyName , ContactName FROM customers;
+
+SELECT DISTINCT City FROM customers;
+
+3. WHERE Clause -- filter records
+
+SELECT * FROM customers WHERE City='baroda';
+
+SELECT * FROM customers WHERE CustomerID='4';
+
+select * from customers WHERE Age>='30';
+
+SELECT * FROM `customers` WHERE Age BETWEEN 20 AND 30;
+
+SELECT * FROM customers WHERE Address IN('kapadwanj','maninagar');
+
+4. AND,OR,NOT
+
+SELECT * FROM customers WHERE Address='maninagar' OR City='ahmedabad';
+
+SELECT * FROM customers WHERE Address='maninagar' AND City='ahmedabad';
+
+SELECT * FROM customers WHERE Address='kapadwanj' AND Age='54';
+
+SELECT * FROM customers WHERE NOT PostalCode='387620';
+
+5 . Order By
+
+SELECT * FROM customers ORDER BY City DESC;
+
+SELECT * FROM customers ORDER BY Address DESC;
+
+SELECT * FROM customers ORDER BY Address DESC, Age ASC;
+
+6. UPDATE
+
+UPDATE customers SET CompanyName='purv' WHERE CustomerID=4;
+
+UPDATE customers SET CompanyName='dharti' WHERE CustomerID=7;
+
+UPDATE customers SET Country='japan' WHERE ContactName='purva';
+
+7 .DELETE
+
+DELETE FROM customers WHERE CustomerID=7;
+
+DELETE FROM customers WHERE Country='japan';
+
+DELETE FROM customers;
+
+8. LIMIT
+
+SELECT * FROM customers LIMIT 5;
+
+SELECT * FROM customers WHERE Country='india' LIMIT 3;
+
+SELECT * FROM customers ORDER BY Country LIMIT 6 OFFSET 3;
+
+9. MIN and MAX
+
+SELECT MIN(Age) AS smallage FROM customers;
+
+SELECT MAX(Age) AS highestage FROM customers;
+
+10. COUNT,AVG,SUM
+
+SELECT COUNT(DOB) FROM customers;
+
+SELECT AVG(Age) FROM customers;
+
+SELECT SUM(Age) FROM customers WHERE Age>='25';
+
+11 . LIKE
+
+SELECT * FROM customers WHERE ContactName LIKE 'm%';
+
+SELECT * FROM customers WHERE ContactName LIKE '%a';
+
+SELECT * FROM customers WHERE CompanyName LIKE '%u%';
+
+SELECT * FROM customers WHERE CompanyName LIKE 's%a';
+
+
+=============================order table========
+
+INSERT INTO `orders` VALUES
+('','Mobile iphone 16','1','99999','ekart','vishal','narol','ahmedabad','india','2025-02-31','UPI','9499504265'),
+('','mobile samsung','1','49000','bluedart','sohil','shastri road','rajkot','india','2025-02-24','online','8524569574'),
+('','LED VU','1','22000','ekart','soham','kim','surat','india','2025-02-02','credit','8758595086'),
+('','laptop Hp','1','49000','delhivery','kinnari','swetambar','banglore','india','2025-01-31','debit','7539518524'),
+('','WM Lloyd','1','49000','bluedart','malav','nadiad','kheda','india','2025-01-31','COD','9898985245');
+
+SELECT * FROM orders;
+
+select * from orders WHERE Price='22000';
+
+SELECT * FROM orders WHERE ShipVia = 'ekart';
+
+SELECT * FROM orders ORDER BY ShipName DESC;
+
+UPDATE orders SET Payment_mode='Cred' WHERE OrderID=4;
+
+SELECT MIN(Price) FROM orders;
+
+SELECT MAX(Price) FROM orders;
+
+SELECT AVG(Price) FROM orders;
+
+DELETE FROM orders;
+
+SELECT SUM(Price) FROM orders;
+
+SELECT * FROM orders WHERE ShipCity IN ('surat','kim');
+    

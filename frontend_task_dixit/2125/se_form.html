@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <div class="container-fluid bg-light pt-2 pb-2">
+    <div class="row d-flex">
+      <div class="col-sm-12 col-md-6">
+        <h2 class="fst-normal">Book Amenity</h2>
+      </div>
+      <div class="col-sm-12 mb-sm-3 col-md-6">
+        <a class="btn btn-danger float-sm-start float-md-end" href="#"><i class="bi bi-file-earmark"></i>&nbsp;View
+          Report</a>
+      </div>
+    </div>
+    <div class="container-fluid rounded-2 bg-white">
+      <div class="row mt-sm-2">
+        <div class="col-sm-12 mt-3">
+          <h6 class="text-uppercase">Room 1 - Guest Room</h6>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-7 mt-md-2 text-wrap">
+            <table class="table col-sm-10 m-sm-0 p-sm-0 border table-responsive table-striped">
+              <thead>
+                <tr class="text-uppercase">
+                  <th>#</th>
+                  <th>Package Type</th>
+                  <th>Max Person</th>
+                  <th>Amount</th>
+                  <th>Package For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-start-0"></td>
+                  <td class="border border-start-0">Three Days Booking</td>
+                  <td class="border border-start-0">2</td>
+                  <td class="border border-start-0">100.00</td>
+                  <td class="border border-start-0">All</td>
+                </tr>
+                <tr>
+                  <td class="border border-start-0">1</td>
+                  <td class="border border-start-0">Two Days Booking</td>
+                  <td class="border border-start-0">2</td>
+                  <td class="border border-start-0">1000.00</td>
+                  <td class="border border-start-0">Owner</td>
+                </tr>
+                <tr>
+                  <td class="border border-start-0">2</td>
+                  <td class="border border-start-0">One Day Booking</td>
+                  <td class="border border-start-0">2</td>
+                  <td class="border border-start-0">1770.00</td>
+                  <td class="border border-start-0">Owner</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Form Reg -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <h6 class="text-uppercase">maximum capacity : 2</h6>
+              </div>
+              <div class="row">
+                <form action="" method="get" enctype="multipart/form-data" class="was-validated">
+                  <table class="col-md-12 table-responsive">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="col-12"><label for="name" class="form-label small text-uppercase fw-bolder">Booking
+                              For
+                              <span class=" text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <select class="form-select" id="name" name="name" required>
+                              <option value="dharmesh">G-101 Dharmesh Dabhi (owner)</option>
+                              <option value="dixit">D-301 Dixit Patel</option>
+                              <option value="piyush">F-403 Piyush</option>
+                              <option value="dev">607 Dev Verma</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="package"
+                              class="form-label small text-uppercase fw-bolder">Booking Package
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <select class="form-select" id="package" name="package" required>
+                              <option value="one">One Day Booking ($1770.00)</option>
+                              <option value="two">Two Days</option>
+                              <option value="three">Three Days</option>
+                              <option value="four">Four Days</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="date" class=" small form-label text-uppercase fw-bolder">Booking
+                              Date
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <input type="date" class="form-control" name="date" id="date" value="2025-01-20"
+                              min="2025-01-20" max="2025-12-31" required>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="checkbox" class=" small text-uppercase fw-bolder">Booking Time
+                              Slot
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                value="01:00 AM to 02:30 AM">
+                              <label class="form-check-label" for="check1">01:00 AM to 02:30 AM ($ 1770.00) <Span
+                                  class="text-danger small">Another Amenity booked at the same time</Span></label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                value="08:30 PM to 10:00 PM" checked>
+                              <label class="form-check-label small" for="check2">08:30 PM to 10:00 PM ($ 1770.00)</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                value="10:00 PM to 11:30 PM">
+                              <label class="form-check-label small" for="check3">10:00 PM to 11:30 PM ($ 1770.00) <Span
+                                  class="text-danger">Another Amenity booked at the same time</Span></label>
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="check4" name="option4"
+                                value="11:30 PM to 01:00 AM">
+                              <label class="form-check-label" for="check4">11:30 PM to 01:00 AM ($ 1770.00) <Span
+                                  class="text-danger small">Another Amenity booked at the same time</Span></label>
+                            </div>
+                            <div class="form-check mt-4">
+                              <input type="checkbox" class="form-check-input" id="wallet" name="wallet" value="104838">
+                              <label class="form-check-label small" for="wallet">Use Wallet Balance <Span
+                                  class="fst-italic">(104838.00)</Span></label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2 fs-6"><label for="payment"
+                              class="text-uppercase small form-label fw-bolder">Payment Type
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <select class="form-select" id="payment" name="payment" required>
+                              <option value="cheque">Cheque</option>
+                              <option value="cash">Cash</option>
+                              <option value="online">Online</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="bank_d" class="form-label small text-uppercase fw-bolder">Bank
+                              Name
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <input type="text" class="form-control" name="bank_d" id="bank_d" minlength="3"
+                              maxlength="20" required>
+                              <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Pls Enter Bank Name.</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="chq_no"
+                              class="form-label small text-uppercase fw-bolder">Cheque No.
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <input type="text" class="form-control" name="chq_no" id="chq_no" minlength="3"
+                              maxlength="8" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Pls Enter Cheque Number.</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="col-12 mt-2"><label for="amt" class="form-label small text-uppercase fw-bolder">Booking
+                              Amount.
+                              <span class="text-danger">*</span></label></div>
+                        </td>
+                        <td>
+                          <div class="col-12 ms-3 mt-2">
+                            <input type="text" class="form-control" name="amt" id="amt" minlength="3" maxlength="5" value="1770"
+                              required>
+                              <div class="valid-feedback">Valid.</div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <hr>
+                  <div class="mb-4 button col-lg-4 offset-lg-4 col-md-6 col-sm-6 offset-md-3 justify-content-center">
+                    <button type="submit" class="btn text-bg-dark">Confirm Booking</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Slot Table -->
+
+          <div class="col-md-5 col-sm-12 mt-sm-2">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="text-uppercase">
+                  <th>Time Slot</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12:00 AM to 12:00 AM</td>
+                </tr>
+                <tr>
+                  <td>08:30 PM to 10:00 PM</td>
+                </tr>
+                <tr>
+                  <td>10:00 PM to 11:30 PM</td>
+                </tr>
+                <tr>
+                  <td>11:30 PM to 01:00 AM</td>
+                </tr>
+                <tr>
+                  <td>01:00 AM to 02:30 AM</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Rules table -->
+
+            <div class="col">
+              <h4 class="text-uppercase">condition for booking</h4>
+              <table class="table border  table-responsive table-striped">
+                <thead>
+                  <tr>
+                    <th>Rule</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-capitalize border border-start-0">Allow next booking after prev. booking completion
+                    </td>
+                    <td class="border border-start-0">Yes</td>
+                  </tr>
+                  <tr>
+                    <td class="text-capitalize border border-start-0">book other amenity same time</td>
+                    <td class="border border-start-0">Yes</td>
+                  </tr>
+                  <tr>
+                    <td class="text-capitalize border border-start-0">book other amenity same time for family</td>
+                    <td class="border border-start-0">Yes</td>
+                  </tr>
+                  <tr>
+                    <td class="text-capitalize border border-start-0">next booking after minutes (only for single
+                      booking)</td>
+                    <td class="border border-start-0">1440</td>
+                  </tr>
+                  <tr>
+                    <td class="text-capitalize border border-start-0">multiple time slot booking at same time</td>
+                    <td class="border border-start-0">No</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

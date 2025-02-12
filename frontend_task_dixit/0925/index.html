@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header location -->
+    <nav class="navbar navbar-expand-sm bg-light mt-3">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <img src="logo-dark.png" alt="Logo" width="30%">
+                </li>
+                <li class="nav-item">
+                    <h3><u><i>Employee Registration Form</i></u></h3>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <!-- Form Section -->
+    <section class="reg_form">
+        <form action="action.html" method="get" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="fname"><b>First Name : <span>*</span></b></label>
+                            <br>
+                            <input type="text" id="fname" placeholder="Enter First Name" name="fname" required
+                                maxlength="10">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="mname"><b>Middle Name : <span>*</span></b></label>
+                            <br>
+                            <input type="text" id="mname" placeholder="Enter Middle Name" name="mname" required
+                                maxlength="10">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="lname"><b>Last Name : <span>*</span></b></label>
+                            <input type="text" id="lname" placeholder="Enter Last Name" name="lname" required
+                                maxlength="10">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="mno"><b>Mobile No : <span>*</span></b></label>
+                            <div class="d-flex">
+                                <input type="text" class="col-1 ccode" name="ccode" value="+91" readonly>
+                                <input type="text" class="mno" id="mno" placeholder="Mobile No" name="mno"
+                                    maxlength="10" required>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="gen"><b>Gender : <span>*</span></b></label>
+                            <input class="gen" type="radio" id="gen" name="gen" value="male" />Male
+                            <input class="gen" type="radio" id="gen" name="gen" value="female" />Female
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="blgroup"><b>Blood Group : <span>*</span></b></label>
+                            <select name="blgroup" id="blgroup">
+                                <option value="o+">O+</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="ab">AB</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="dob"><b>Date Of Birth : <span>*</span></b></label>
+                            <input type="date" id="dob" name="dob" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="email"><b>Enter your email: <span>*</span></b></label>
+                            <input type="email" id="email" name="email" placeholder="Your Mail abc@gmail.com" size="30"
+                                required />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="desi"><b>Designation : <span>*</span></b></label>
+                            <input type="text" id="desi" name="desi" minlength="4" maxlength="8" size="10" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="image"><b>Photo: <span>*</span></b></label>
+                            <input type="file" id="image" accept="image/png, image/jpeg" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="bu_type"><b>Business Type : <span>*</span></b></label>
+                            <select name="bu_type" id="bu_type">
+                                <option value="webdeploment">Webdeploment</option>
+                                <option value="design">Designing</option>
+                                <option value="backend">Backend</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="city"><b>City : <span>*</span></b></label>
+                            <select name="city" id="city">
+                                <option value="ahmedabad">Ahmedabad</option>
+                                <option value="rajkot">Rajkot</option>
+                                <option value="gandhinagr">Gandhinagr</option>
+                                <option value="surat">Surat</option>
+                                <option value="jamnagar">Jamnagar</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="com_email"><b>Enter Company email: <span>*</span></b></label>
+                            <input type="email" id="com_email" name="com_email" placeholder="abc@xyz.com"
+                                pattern=".+@gmail.com" size="30" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="brochure"><b>Brochure: <span>*</span></b></label>
+                            <input type="file" id="brochure" accept="brochure/pdf" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="eid"><b>Employee ID : <span>*</span></b></label>
+                            <input type="text" id="eid" name="eid" minlength="3" maxlength="8" size="10" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="ref"><b>Reference : <span>*</span></b></label>
+                            <select name="ref" id="ref">
+                                <option value="linkedln">Linkedln</option>
+                                <option value="friend">Friend</option>
+                                <option value="insta">Instagram</option>
+                                <option value="news-adver">News Advertisement</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-1">
+                            <label for="desb"><b>Describe More : <span>*</span></b></label>
+                            <textarea name="desb" id="desb" cols="40%" rows="4"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-2">
+                            <label for="add"><b>Your Address : <span>*</span></b></label>
+                            <textarea name="add" id="add" cols="40%" rows="4"></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <button class="sub" type="submit">Submit</button>
+            <button class="res" type="reset">Reset Data</button>
+        </form>
+    </section>
+    <!-- video Section -->
+    <div class="video">
+        <h4>My Video :
+            <hr>
+        </h4>
+        <!-- <iframe width="500" height="315" src="https://www.youtube.com/embed/an6p82vTbEI?si=4St-_Ums7PwS1E9y"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe> -->
+            <br>
+
+        <video src="BAPS Moj ma revu moj ma revu moj ma revu re...._HD.mp4" width="500" height="315" controls autoplay muted></video>
+        <h4>My Audio :
+            <hr>
+        </h4>
+        <audio src="04_Tari Utareli Pagh.mp3" controls></audio>
+
+    </div>
+    <!-- location -->
+    <div class="location">
+        <h4>Company Location :
+            <hr>
+        </h4>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.9421576270915!2d72.49680049999999!3d22.989154400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b0448528dd1%3A0x1f5b6738ff8c2766!2sCHPL!5e0!3m2!1sen!2sin!4v1736413831349!5m2!1sen!2sin"
+            width="500" height="315" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</body>
+
+</html>

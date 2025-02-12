@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jqueryCDN.js"></script>
+    <style>
+        .box {
+            background-color: rgb(131, 226, 131);
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn1">Increase Size</button>
+    <button class="btn2">Reset Size</button>
+    <button class="btn3">Decrease Size</button><br><br>
+    <div class="box"></div>
+    <script>
+        $(document).ready(function () {
+
+            $(".btn1").click(function () {
+                $(".box").animate({
+                    left: '250px',
+                    height: '+=50px',
+                    width: '+=50px'
+                });
+                
+            });
+            $(".btn2").click(function () {
+                $(".box").animate({
+                    height: '150px',
+                    width: '150px'
+                });
+                
+            });
+            $(".btn3").click(function () {
+                $(".box").animate({
+                    left: '250px',
+                    height: '-=25px',
+                    width: '-=25px'
+                });
+                
+            });
+
+        });
+    </script>
+</body>
+
+</html>

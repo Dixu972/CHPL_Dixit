@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #1abc9c;
+        }
+
+        .form {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px 15px;
+            margin: 155px auto;
+        }
+
+        #register-form,
+        #otp-form {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- login Form -->
+        <div id="login-form" class="row ">
+            <div class="col-md-6 offset-3 form">
+                <h2 class="text-center">Login Form</h2>
+                <hr>
+                <form action="#">
+                    <div class="mb-3 mt-3">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                    </div>
+                    <div class="form-check mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-info reg-btn float-end">Register</button>
+                </form>
+            </div>
+        </div>
+        <!-- Register Form -->
+        <div id="register-form" class="row">
+            <div class="col-md-6 offset-3 form">
+                <h2 class="text-center">Register Form</h2>
+                <hr>
+                <form action="#">
+                    <div class="mb-3 mt-3">
+                        <label for="name">Full Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Your Full Name"
+                            name="name">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="m_no">Contact No:</label>
+                        <input type="number" class="form-control" id="m_no" placeholder="Enter Contact No" name="m_no">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                    </div>
+
+                    <button type="button" class="btn btn-primary">Register</button>
+                    <button class="btn btn-danger can1">Back To Login</button>
+                    <button type="button" class="btn btn-info float-end otp-btn">GET OTP</button>
+                </form>
+            </div>
+        </div>
+        <!-- OTP Form -->
+        <div id="otp-form" class="row ">
+            <div class="col-md-6 offset-3 form">
+                <h2 class="text-center">Enter Email For OTP</h2>
+                <hr>
+                <form action="#">
+                    <div class="mb-3 mt-3">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    </div>
+                    <button type="button" class="btn btn-primary">Send OTP</button>
+                    <button class="btn btn-danger can2 float-end">Cancel</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+
+                $(".reg-btn").click(function () {
+                    $("#register-form").show();
+                    $("#login-form").hide();
+                });
+
+                $(".otp-btn").click(function () {
+                    $("#otp-form").show(); 
+                    $("#register-form").hide();
+                });
+
+                $(".can1").click(function () {
+                    $("#login-form").show();
+                    $("#register-form").hide();
+                    $("#otp-form").hide();
+                });
+
+                $(".can2").click(function () {
+                    $("#register-form").hide();
+                    $("#otp-form").hide();
+                    $("#login-form").show();
+                });
+            });
+        </script>
+</body>
+
+</html>

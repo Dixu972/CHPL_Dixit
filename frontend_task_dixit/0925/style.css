@@ -1,0 +1,52 @@
+body {
+  background-color: #f8f9fa;
+}
+
+form {
+  width: 92%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px 50px;
+  margin: 25px 50px;
+}
+table {
+  width: 100%;
+}
+span{
+    color: red;
+}
+
+.col-1 {
+  width: 50%;
+}
+
+.col-2 {
+  width: 50%;
+}
+form input,select {
+  margin-top: 5px;
+  /* border-radius: 5px; */
+  width: 180%;
+}
+.mno{
+    width: 120%;
+}
+.gen{
+    width: 10%;
+}
+button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 2rem;font-weight: 700;
+    
+}
+.sub{
+    background-color: rgb(194, 194, 241);
+}
+.res{
+    background-color: gray;
+}
+.video, .location{
+    margin: 2rem 26rem;
+}
+
