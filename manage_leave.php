@@ -1,6 +1,8 @@
 <?php
 
-include 'common_pages/header.php';
+include_once 'common_pages/header.php';
+include 'controller/access_control.php';
+
 
 // include 'controller/dbconfig.php';
 
@@ -58,13 +60,13 @@ include 'common_pages/header.php';
                                             <!-- Approve Button -->
                                             <form action="your_script.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" name="approve_btn" value="1" class="btn btn-danger">Approve</button>
+                                                <button type="submit" name="approve_btn" value="1" class="btn btn-success">Approve</button>
                                             </form>
 
                                             <!-- Reject Button -->
                                             <form action="your_script.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" name="reject_btn" value="0" class="btn btn-info">Reject</button>
+                                                <button type="submit" name="reject_btn" value="0" class="btn btn-danger">Reject</button>
                                             </form>
                                         </td>
                                     </tr>

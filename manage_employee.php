@@ -1,4 +1,9 @@
-﻿<?php include 'common_pages/header.php'; ?>
+﻿<?php 
+
+include_once 'controller/access_control.php';
+include 'common_pages/header.php'; 
+
+?>
 <!-- /. NAV SIDE  -->
 <div id="page-wrapper">
     <div id="page-inner">

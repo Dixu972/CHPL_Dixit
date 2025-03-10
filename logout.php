@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+setcookie("admin_access", "", time() - 3600, "/", "", true, true);
 session_unset();
 
 $_SESSION['success_message'] = 'Logout successfully!';

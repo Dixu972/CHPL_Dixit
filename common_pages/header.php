@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if the session variable for logged-in user exists and is set to true
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -63,17 +65,22 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                         <img src="assets/img/find_user.png" class="user-image img-responsive" />
                     </li>
                     <li>
-                        <a class="active-menu" href="welcome.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="active-menu" href="welcome.php"><i class="fa fa-dashboard fa-3x"></i>Dashboard</a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-3x"></i>Employee<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-3x"></i>Data<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="manage_employee.php">Manage Employee</a>
-                            </li>
-                            <li>
-                                <a href="edit_employee.php">Edit Employee</a>
+                                <a href="#">Employee<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_employee.php">Manage Employee</a>
+                                    </li>
+                                    <li>
+                                        <a href="edit_employee.php">Edit Employee</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="manage_attendance.php">Manage Attendance</a>
@@ -82,10 +89,46 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                 <a href="manage_leave.php">Manage Leave</a>
                             </li>
                             <li>
-                                <a href="manage_department.php">Manage Department</a>
+                                <a href="#">Company<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_company.php">Manage Company</a>
+                                    </li>
+                                    <li>
+                                        <a href="add_company.php">Add Company</a>
+                                    </li>
+                                    <li>
+                                        <a href="edit_company.php">Edit Company</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="manage_position.php">Manage Position</a>
+                                <a href="#">Department<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_department.php">Manage Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="add_department.php">Add Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="edit_department.php">Edit Department</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Position<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_position.php">Manage Position</a>
+                                    </li>
+                                    <li>
+                                        <a href="add_position.php">Add Position</a>
+                                    </li>
+                                    <li>
+                                        <a href="edit_position.php">Edit Position</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

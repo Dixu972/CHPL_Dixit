@@ -1,11 +1,15 @@
-﻿<?php include 'common_pages/header.php'; ?>
+﻿<?php 
+
+include 'common_pages/header.php'; 
+
+?>
 
 <!-- /. NAV SIDE  -->
 <div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>HRMS Admin Dashboard</h2>
+                <h2>HRMS<span> <?php echo ucfirst($_SESSION['role']);?> </span>Dashboard</h2>
             </div>
         </div>
         <!-- /. ROW  -->
