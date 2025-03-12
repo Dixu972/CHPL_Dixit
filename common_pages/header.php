@@ -36,6 +36,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <!-- Sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </head>
@@ -50,7 +52,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="welcome.php">Welcome Admin</a>
+                <a class="navbar-brand" href="welcome.php">Welcome <span style="font-size: 23px"><?php echo ucfirst($_SESSION['role']); ?></span></a>
             </div>
             <div id="time" style="color: white;
 padding: 15px 50px 5px 50px;
@@ -83,10 +85,20 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                 </ul>
                             </li>
                             <li>
-                                <a href="manage_attendance.php">Manage Attendance</a>
+                                <a href="#">Attendance<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_attendance.php">Manage Attendance</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="manage_leave.php">Manage Leave</a>
+                                <a href="#">Leave<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="manage_leave.php">Manage Leave</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#">Company<span class="fa arrow"></span></a>
@@ -96,9 +108,6 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                     </li>
                                     <li>
                                         <a href="add_company.php">Add Company</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit_company.php">Edit Company</a>
                                     </li>
                                 </ul>
                             </li>
@@ -111,9 +120,6 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                     <li>
                                         <a href="add_department.php">Add Department</a>
                                     </li>
-                                    <li>
-                                        <a href="edit_department.php">Edit Department</a>
-                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -125,15 +131,10 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                     <li>
                                         <a href="add_position.php">Add Position</a>
                                     </li>
-                                    <li>
-                                        <a href="edit_position.php">Edit Position</a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                 </ul>
-
             </div>
-
         </nav>

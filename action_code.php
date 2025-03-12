@@ -30,9 +30,11 @@ if (isset($_POST['register_ad_btn'])) {
     if (mysqli_query($conn, $query)) {
         $_SESSION['success_message'] = "Admin registered successfully!";
         header("Location: index.php");
+        exit;
     } else {
         $_SESSION['error_message'] = "Registration failed. Please try again.";
         header("Location: admin_reg.php");
+        exit;
     }
 }
 
@@ -63,7 +65,7 @@ if (isset($_POST['login'])) {
             if ($row['role'] == 'company_admin') {
                 $allowedPages = ['welcome.php', 'manage_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_leave.php'];
             } else { // Super Admin
-                $allowedPages = ['welcome.php', 'add_company.php', 'add_department.php', 'add_position.php', 'edit_employee.php', 'edit_department.php', 'edit_position.php', 'edit_comapny.php', 'manage_employee.php',];
+                $allowedPages = ['welcome.php', 'add_company.php', 'add_department.php', 'add_position.php', 'edit_employee.php', 'edit_department.php', 'edit_position.php', 'edit_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_company.php', 'manage_leave.php'];
             }
 
             // Encrypt & Store in Cookies
@@ -83,6 +85,198 @@ if (isset($_POST['login'])) {
         // Email does not exist
         $_SESSION['error_message'] = 'Invalid login credentials.';
         header('Location: index.php');
+        exit;
+    }
+}
+
+
+// insert data of company
+
+if (isset($_POST['comp_reg'])) {
+    $company_name = mysqli_real_escape_string($conn, $_POST['company_name']);
+    $company_email = mysqli_real_escape_string($conn, $_POST['company_email']);
+    $company_phone = mysqli_real_escape_string($conn, $_POST['company_phone']);
+    $company_address = mysqli_real_escape_string($conn, $_POST['company_address']);
+
+    // Insert query
+    $sql = "INSERT INTO company_master (company_name, company_email, company_phone, company_address) 
+            VALUES ('$company_name', '$company_email', '$company_phone', '$company_address')";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Company Register successfully!";
+        header("Location: manage_company.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Something Wrong !';
+        header('Location: add_company.php');
+        exit;
+    }
+}
+
+// update data of company
+
+if (isset($_POST['comp_update'])) {
+    $id = $_POST['u_id'];
+    $company_name = mysqli_real_escape_string($conn, $_POST['company_name']);
+    $company_email = mysqli_real_escape_string($conn, $_POST['company_email']);
+    $company_phone = mysqli_real_escape_string($conn, $_POST['company_phone']);
+    $company_address = mysqli_real_escape_string($conn, $_POST['company_address']);
+
+    $sql = "UPDATE company_master SET 
+                company_name = '$company_name', 
+                company_email = '$company_email', 
+                company_phone = '$company_phone', 
+                company_address = '$company_address' 
+            WHERE company_id = '$id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Company Update successfully!";
+        header("Location: manage_company.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Update Data Failed !';
+        header('Location: edit_company.php');
+        exit;
+    }
+}
+
+// delete company
+
+if (isset($_GET['delete_comp'])) {
+
+    $id = intval($_GET['delete_comp']); // Convert to integer for security
+
+    $sql = "DELETE FROM company_master WHERE company_id = '$id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Company Deleted successfully!";
+        header("Location: manage_company.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Error deleting record !';
+        header('Location: manage_company.php');
+        exit;
+    }
+}
+
+// insert Department of company
+
+if (isset($_POST['reg_dept'])) {
+    $company_id = mysqli_real_escape_string($conn, $_POST['company_id']);
+    $dept_name = mysqli_real_escape_string($conn, $_POST['dept_name']);
+
+    // Insert query
+    $sql = "INSERT INTO dept_master(company_id, dept_name) 
+            VALUES ('$company_id', '$dept_name')";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Department Register successfully!";
+        header("Location: manage_department.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Something Wrong !';
+        header('Location: add_department.php');
+        exit;
+    }
+}
+
+// update Department of company
+
+if (isset($_POST['update_dept'])) {
+
+    $dept_id = intval($_POST['dept_id']);
+    $company_id = intval($_POST['company_id']);
+    $dept_name = mysqli_real_escape_string($conn, $_POST['dept_name']);
+
+    $query = "UPDATE dept_master SET company_id = $company_id, dept_name = '$dept_name' WHERE dept_id = $dept_id";
+
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['success_message'] = "Department Update successfully!";
+        header("Location: manage_department.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Something Wrong !';
+        header('Location: edit_department.php');
+        exit;
+    }
+}
+
+// Delete Department of company
+
+if (isset($_GET['del_dept_id'])) {
+
+    $id = intval($_GET['del_dept_id']); // Convert to integer for security
+
+    $sql = "DELETE FROM dept_master WHERE dept_id = '$id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Department Deleted successfully!";
+        header("Location: manage_department.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Error deleting record !';
+        header('Location: manage_department.php');
+        exit;
+    }
+}
+
+// insert Position
+
+if (isset($_POST['reg_pos'])) {
+    $company_id = mysqli_real_escape_string($conn, $_POST['company_id']);
+    $dept_id = mysqli_real_escape_string($conn, $_POST['dept_id']);
+    $position_name = mysqli_real_escape_string($conn, $_POST['position_name']);
+
+    $query = "INSERT INTO position_master (company_id, dept_id, position_name) VALUES ('$company_id', '$dept_id', '$position_name')";
+
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['success_message'] = "Position Register successfully!";
+        header("Location: manage_position.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Something Wrong !';
+        header('Location: add_position.php');
+        exit;
+    }
+}
+
+// update position
+
+if (isset($_POST['u_reg_pos'])) {
+
+    $position_id = mysqli_real_escape_string($conn, $_POST['u_position_id']);
+    $company_id = mysqli_real_escape_string($conn, $_POST['company_id']);
+    $dept_id = mysqli_real_escape_string($conn, $_POST['dept_id']);
+    $position_name = mysqli_real_escape_string($conn, $_POST['position_name']);
+
+    $query = "UPDATE position_master SET company_id='$company_id', dept_id='$dept_id', position_name='$position_name' WHERE position_id='$position_id'";
+
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['success_message'] = "Position Updated successfully!";
+        header("Location: manage_position.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Something Wrong !';
+        header('Location: manage_position.php');
+        exit;
+    }
+}
+
+// delete position
+
+if (isset($_GET['delete_pos'])) {
+
+    $id = intval($_GET['delete_pos']); // Convert to integer for security
+
+    $sql = "DELETE FROM position_master WHERE position_id = '$id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Position Deleted successfully!";
+        header("Location: manage_position.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Error deleting record !';
+        header('Location: manage_position.php');
         exit;
     }
 }

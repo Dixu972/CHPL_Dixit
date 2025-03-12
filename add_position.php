@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 include_once 'controller/access_control.php';
-include 'common_pages/header.php'; 
+include 'common_pages/header.php';
+include 'controller/dbconfig.php';
 
 ?>
 
@@ -20,21 +21,39 @@ include 'common_pages/header.php';
                 <!-- Form Elements -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    Position Form Element
+                        Position Form Element
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <form role="form" method="post" action="action_code.php" enctype="multipart/form-data">
+                            <form role="form" method="post" action="action_code.php">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Position Name</label>
-                                        <input type="text" class="form-control" name="" id="" placeholder="Enter Position Name" required />
+                                        <label for="company_id">Company Name:</label>
+                                        <select class="form-control" name="company_id" id="company_id" required>
+                                            <option value="">Select Company</option>
+                                            <?php
+                                            include 'controller/dbconfig.php';
+                                            $query = "SELECT company_id, company_name FROM company_master ORDER BY company_name ASC";
+                                            $result = mysqli_query($conn, $query);
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='" . htmlspecialchars($row['company_id']) . "'>" . htmlspecialchars($row['company_name']) . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <!-- Department Selection (Updated Dynamically using AJAX) -->
+                                    <div class="form-group">
+                                        <label for="dept_id">Department Name:</label>
+                                        <select class="form-control" name="dept_id" id="dept_id" required>
+                                            <option value="">Select Department</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Profile Photo</label>
-                                        <input type="file" id="" name="profile-photo" />
+                                        <label>Position Name :</label>
+                                        <input type="text" class="form-control" name="position_name" id="position_name" placeholder="Enter Position Name" required />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" name="reg_pos" class="btn btn-primary">Submit</button>
                                     <a href="manage_position.php" class="btn btn-danger">Cancel</a>
                                 </div>
                             </form>

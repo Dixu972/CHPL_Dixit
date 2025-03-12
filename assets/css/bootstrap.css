@@ -5,6 +5,14 @@
  */
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+/* custom css */
+
+
+
+
+/* --------------------------------- */
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -2161,6 +2169,17 @@ fieldset[disabled] .btn-success.active {
   color: #5cb85c;
   background-color: #fff;
 }
+
+.comp-bt,.emp-bt{
+  margin-top: 5px;
+  width: 70px;
+}
+
+.lv_rej{
+  width: 81px;
+  margin-top: 5px;
+}
+
 .btn-info {
   color: #fff;
   background-color: #5bc0de;

@@ -1,15 +1,18 @@
 <?php
 
-include_once 'common_pages/header.php';
 include 'controller/access_control.php';
+include_once 'common_pages/header.php';
+include 'controller/dbconfig.php';
 
+// Fetch form database
+$leave = "SELECT l.l_id,c.company_name,u.u_name,lt.type_name,l.l_reason,l.l_start_date,l.l_end_date,ls.status_name,a.admin_name from leave_master l 
+LEFT JOIN company_master c ON l.company_id=c.company_id
+LEFT JOIN user_master u ON l.u_id=u.u_id
+LEFT JOIN leave_types lt ON l.leave_type_id=lt.id
+LEFT JOIN leave_statuses ls ON l.l_status_id=ls.id
+LEFT JOIN admin_master a ON l.l_approved_by=a.admin_id";
 
-// include 'controller/dbconfig.php';
-
-// Fetch statuses from the database
-// $query = "SELECT * FROM leave_status";
-// $result = mysqli_query($conn, $query);
-// $row = mysqli_fetch_assoc($result);
+$result = mysqli_query($conn, $leave);
 
 
 ?>
@@ -36,26 +39,29 @@ include 'controller/access_control.php';
                                 <thead>
                                     <tr>
                                         <th>Leave ID</th>
+                                        <th>Company Name</th>
                                         <th>Employee Name</th>
-                                        <th>Leave_type</th>
-                                        <th>Leave_start</th>
-                                        <th>Leave_end</th>
-                                        <th>Leave_status_id</th>
+                                        <th>Leave Type</th>
+                                        <th>Reason</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
                                         <th>Leave_status</th>
                                         <th>Leave_approved_by</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php foreach($result as $l) {?>
                                     <tr class="odd gradeX">
-                                        <td>1</td>
-                                        <td>Dixit Patel</td>
-                                        <td>CL</td>
-                                        <td>2025/01/06</td>
-                                        <td>2000/01/06</td>
-                                        <td>0</td>
-                                        <td>Approve</td>
-                                        <td>senior Hr</td>
+                                        <td><?php echo $l['l_id'];?></td>
+                                        <td><?php echo $l['company_name'];?></td>
+                                        <td><?php echo $l['u_name'];?></td>
+                                        <td><?php echo $l['type_name'];?></td>
+                                        <td><?php echo $l['l_reason'];?></td>
+                                        <td><?php echo $l['l_start_date'];?></td>
+                                        <td><?php echo !empty($l['l_end_date']) ? $l['l_end_date'] : '---';?><td>
+                                        <td><?php echo $l['status_name'];?></td>
+                                        <td><?php echo $l['admin_name'];?></td>
                                         <td class="">
                                             <!-- Approve Button -->
                                             <form action="your_script.php" method="POST" style="display:inline;">
@@ -66,10 +72,11 @@ include 'controller/access_control.php';
                                             <!-- Reject Button -->
                                             <form action="your_script.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" name="reject_btn" value="0" class="btn btn-danger">Reject</button>
+                                                <button type="submit" name="reject_btn" value="0" class="btn btn-danger lv_rej">Reject</button>
                                             </form>
                                         </td>
                                     </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

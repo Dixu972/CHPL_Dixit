@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 include_once 'controller/access_control.php';
-include 'common_pages/header.php'; 
+include 'common_pages/header.php';
 
 ?>
 
@@ -27,14 +27,26 @@ include 'common_pages/header.php';
                             <form role="form" method="post" action="action_code.php" enctype="multipart/form-data">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Department Name</label>
-                                        <input type="text" class="form-control" name="" id="" placeholder="Enter Full Name" required />
+                                        <label for="company_id">Company Name:</label>
+                                        <select class="form-control" name="company_id" id="company_id" required>
+                                            <option value="">Select Company</option>
+                                            <?php
+                                            include 'controller/dbconfig.php';
+                                            $query = "SELECT company_id, company_name FROM company_master ORDER BY company_name ASC";
+                                            $result = mysqli_query($conn, $query);
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='" .htmlspecialchars($row['company_id']) . "'>" . htmlspecialchars($row['company_name']) . "</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
+
                                     <div class="form-group">
-                                        <label>Profile Photo</label>
-                                        <input type="file" id="" name="profile-photo" />
+                                        <label>Department Name :</label>
+                                        <input type="text" class="form-control" name="dept_name" id="dept_name" placeholder="Enter Department Name" required />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" name="reg_dept" class="btn btn-primary">Submit</button>
                                     <a href="manage_department.php" class="btn btn-danger">Cancel</a>
                                 </div>
                             </form>

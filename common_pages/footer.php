@@ -37,7 +37,7 @@ if (isset($_SESSION['error_message'])) {
     // Function to update time every second
     function updateTime() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_time.php', true); 
+        xhr.open('GET', 'get_time.php', true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 document.getElementById('time').innerHTML = xhr.responseText;
@@ -48,6 +48,29 @@ if (isset($_SESSION['error_message'])) {
 
     // Update time every second (1000ms)
     setInterval(updateTime, 1000);
+
+    // for get Department dynamically
+
+    $(document).ready(function() {
+        $('#company_id').change(function() {
+            var company_id = $(this).val();
+
+            if (company_id) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_departments.php',
+                    data: {
+                        company_id: company_id
+                    },
+                    success: function(response) {
+                        $('#dept_id').html(response);
+                    }
+                });
+            } else {
+                $('#dept_id').html('<option value="">Select Department</option>');
+            }
+        });
+    });
 </script>
 <!-- MORRIS CHART SCRIPTS -->
 <script src="assets/js/morris/raphael-2.1.0.min.js"></script>

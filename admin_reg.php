@@ -108,9 +108,6 @@ session_start();
         </div>
     </div>
 
-
-
-
     <?php
     // Check for success message in session
     if (isset($_SESSION['success_message'])) {
