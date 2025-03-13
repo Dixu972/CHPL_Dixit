@@ -1,6 +1,66 @@
-﻿<?php 
+﻿<?php
 
-include 'common_pages/header.php'; 
+include 'common_pages/header.php';
+include 'controller/dbconfig.php';
+
+// fetch count of employee registration
+
+$sql = "SELECT COUNT(u_id) AS active_users FROM user_master WHERE u_is_delete = 0";
+$result = mysqli_query($conn, $sql);
+$activeUsers = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $activeUsers = $row['active_users'];
+}
+
+// comapny count
+
+$comp = "SELECT COUNT(company_name) AS reg_com FROM company_master";
+$result = mysqli_query($conn, $comp);
+$reg_com = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $reg_com = $row['reg_com'];
+}
+
+// dynamic data of month for total working days 
+
+function getWorkingDaysAndWeekOffs($month, $year)
+{
+    $startDate = strtotime("$year-$month-01");
+    $endDate = strtotime("$year-$month-" . date('t', $startDate)); // Last date of the month
+    $totalWorkingDays = 0;
+    $leftWorkingDays = 0;
+    $totalWeekOffs = 0;
+    $today = strtotime(date('Y-m-d')); // Current date
+
+    for ($date = $startDate; $date <= $endDate; $date = strtotime("+1 day", $date)) {
+        $dayOfWeek = date('N', $date); // 1 (Monday) to 7 (Sunday)
+
+        if ($dayOfWeek == 6 || $dayOfWeek == 7) {
+            // Count Saturdays & Sundays as week offs
+            $totalWeekOffs++;
+            continue;
+        }
+
+        $totalWorkingDays++;
+
+        if ($date >= $today) {
+            $leftWorkingDays++;
+        }
+    }
+
+    return [$totalWorkingDays, $leftWorkingDays, $totalWeekOffs];
+}
+
+// Get current month and year
+$month = date('m');
+$year = date('Y');
+$monthName = date('F');
+
+// Calculate working days and week offs
+list($totalWorkingDays, $leftWorkingDays, $totalWeekOffs) = getWorkingDaysAndWeekOffs($month, $year);
+
 
 ?>
 
@@ -9,25 +69,51 @@ include 'common_pages/header.php';
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>HRMS<span> <?php echo ucfirst($_SESSION['role']);?> </span>Dashboard</h2>
+                <h2>HRMS<span> <?php echo ucfirst($_SESSION['role']); ?> </span>Dashboard</h2>
             </div>
         </div>
         <!-- /. ROW  -->
         <hr />
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-red set-icon">
-                        <i class="fa fa-envelope-o"></i>
+                <div class="panel panel-back noti-box" style="min-height: 210px;">
+                    <span class="icon-box bg-color-blue set-icon">
+                        <i class="fa fa-bell-o"></i>
                     </span>
                     <div class="text-box">
-                        <p class="main-text">12 New</p>
-                        <p class="text-muted">Messages</p>
+                        <p class="main-text"><?php echo $monthName; ?> Month</p>
+                        <p class="text-muted" style="margin-top: 9px;">Total Working Days: <?php echo $totalWorkingDays; ?></p>
+                        <p class="text-muted">Total Week Offs: <?php echo $totalWeekOffs; ?></p>
+                        <p class="text-muted">Left Working Days: <?php echo $leftWorkingDays; ?></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="panel panel-back noti-box">
+                <div class="panel panel-back noti-box" style="min-height: 240px;">
+                    <span class="icon-box bg-color-red set-icon">
+                        <i class="fa fa-copy"></i>
+                    </span>
+                    <div class="text-box">
+                        <p class="main-text">Company</p>
+                        <p class="text-muted" style="margin-top: 9px;">Total Register : <?php echo $reg_com; ?></p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="panel panel-back noti-box" style="min-height: 240px;">
+                    <span class="icon-box bg-color-brown set-icon">
+                        <i class="fa fa-users"></i>
+                    </span>
+                    <div class="text-box">
+                        <p class="main-text">Employee</p>
+                        <p class="text-muted" style="margin-top: 9px; font-weight: bold;">Active Users Numbers</p>
+                        <p class="text-muted">Total: <?php echo $activeUsers; ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="panel panel-back noti-box" style="min-height: 240px;">
                     <span class="icon-box bg-color-green set-icon">
                         <i class="fa fa-calendar"></i>
                     </span>
@@ -37,28 +123,7 @@ include 'common_pages/header.php';
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-blue set-icon">
-                        <i class="fa fa-bell-o"></i>
-                    </span>
-                    <div class="text-box">
-                        <p class="main-text">20 Attendance</p>
-                        <p class="text-muted">Reports Due</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">
-                <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-brown set-icon">
-                        <i class="fa fa-users"></i>
-                    </span>
-                    <div class="text-box">
-                        <p class="main-text">10 Employee</p>
-                        <p class="text-muted">Registration</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <!-- /. ROW  -->
         <hr />
