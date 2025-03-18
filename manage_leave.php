@@ -59,19 +59,19 @@ $result = mysqli_query($conn, $leave);
                                         <td><?php echo $l['type_name'];?></td>
                                         <td><?php echo $l['l_reason'];?></td>
                                         <td><?php echo $l['l_start_date'];?></td>
-                                        <td><?php echo !empty($l['l_end_date']) ? $l['l_end_date'] : '---';?><td>
-                                        <td><?php echo $l['status_name'];?></td>
+                                        <td><?php echo !empty($l['l_end_date']) ? $l['l_end_date'] : '---';?></td>
+                                        <td><b><?php echo $l['status_name'];?></b></td>
                                         <td><?php echo $l['admin_name'];?></td>
-                                        <td class="">
+                                        <td>
                                             <!-- Approve Button -->
-                                            <form action="your_script.php" method="POST" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <form action="action_code.php" method="POST" style="display:inline;">
+                                                <input type="hidden" name="approve_lid" value="<?php echo $l['l_id']; ?>">
                                                 <button type="submit" name="approve_btn" value="1" class="btn btn-success">Approve</button>
                                             </form>
 
                                             <!-- Reject Button -->
-                                            <form action="your_script.php" method="POST" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <form action="action_code.php" method="POST" style="display:inline;">
+                                                <input type="hidden" name="reject_lid" value="<?php echo $l['l_id']; ?>">
                                                 <button type="submit" name="reject_btn" value="0" class="btn btn-danger lv_rej">Reject</button>
                                             </form>
                                         </td>

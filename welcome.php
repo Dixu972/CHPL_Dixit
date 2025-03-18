@@ -62,6 +62,16 @@ $monthName = date('F');
 list($totalWorkingDays, $leftWorkingDays, $totalWeekOffs) = getWorkingDaysAndWeekOffs($month, $year);
 
 
+// dyanmically leave status on dashboard
+
+$leave = "SELECT COUNT(l_id) AS leave_count FROM leave_master where l_status_id=1";
+$result = mysqli_query($conn, $leave);
+$leave_count = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $leave_count = $row['leave_count'];
+}
+
 ?>
 
 <!-- /. NAV SIDE  -->
@@ -118,7 +128,7 @@ list($totalWorkingDays, $leftWorkingDays, $totalWeekOffs) = getWorkingDaysAndWee
                         <i class="fa fa-calendar"></i>
                     </span>
                     <div class="text-box">
-                        <p class="main-text">5 Pending</p>
+                        <p class="main-text"><?php echo $leave_count ;?> Pending</p>
                         <p class="text-muted">Leave Requests</p>
                     </div>
                 </div>

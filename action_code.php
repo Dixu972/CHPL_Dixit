@@ -12,6 +12,7 @@ if (isset($_POST['register_ad_btn'])) {
     $admin_email = $_POST['a_email'];
     $admin_pass = password_hash($_POST['a_password'], PASSWORD_DEFAULT); // Secure password
     $role = $_POST['role'];
+    $a_company_id = $_POST['a_company_id'];
 
     // Check if email already exists
     $checkEmail = "SELECT * FROM admin_master WHERE admin_email = '$admin_email'";
@@ -24,8 +25,8 @@ if (isset($_POST['register_ad_btn'])) {
     }
 
     // Insert Query
-    $query = "INSERT INTO admin_master (admin_name, admin_email, admin_pass, role) 
-              VALUES ('$admin_name', '$admin_email', '$admin_pass', '$role')";
+    $query = "INSERT INTO admin_master (admin_name, admin_email, admin_pass, role,a_company_id) 
+              VALUES ('$admin_name', '$admin_email', '$admin_pass', '$role','$a_company_id')";
 
     if (mysqli_query($conn, $query)) {
         $_SESSION['success_message'] = "Admin registered successfully!";
@@ -45,7 +46,7 @@ if (isset($_POST['login'])) {
     $a_password = $_POST['a_password'];
 
     // Secure SQL Query (Prepared Statement)
-    $login = "SELECT `admin_id`, `admin_pass`, `role` FROM admin_master WHERE admin_email = ?";
+    $login = "SELECT * FROM admin_master WHERE admin_email = ?";
     $stmt = mysqli_prepare($conn, $login);
     mysqli_stmt_bind_param($stmt, "s", $a_email);
     mysqli_stmt_execute($stmt);
@@ -60,12 +61,14 @@ if (isset($_POST['login'])) {
             $_SESSION['a_email'] = $a_email;
             $_SESSION['role'] = $row['role'];
             $_SESSION['admin_id'] = $row['admin_id'];
+            $_SESSION['a_company_id'] = $row['a_company_id'];
+            $_SESSION['admin_name'] = $row['admin_name'];
 
             // Role-based Allowed Pages
             if ($row['role'] == 'company_admin') {
-                $allowedPages = ['welcome.php', 'manage_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_leave.php'];
+                $allowedPages = ['welcome.php', 'manage_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_leave.php', 'manage_attendance.php','edit_employee.php'];
             } else { // Super Admin
-                $allowedPages = ['welcome.php', 'add_company.php', 'add_department.php', 'add_position.php', 'edit_employee.php', 'edit_department.php', 'edit_position.php', 'edit_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_company.php', 'manage_leave.php'];
+                $allowedPages = ['welcome.php', 'add_company.php', 'add_department.php', 'add_position.php', 'edit_employee.php', 'edit_department.php', 'edit_position.php', 'edit_company.php', 'manage_employee.php', 'manage_department.php', 'manage_position.php', 'manage_company.php', 'manage_leave.php', 'manage_attendance.php'];
             }
 
             // Encrypt & Store in Cookies
@@ -284,33 +287,141 @@ if (isset($_GET['delete_pos'])) {
 
 // leave approve reject code
 
-if (isset($_POST[''])) {
 
-    // Get the form data (id and action_code)
-    $id = $_POST['id'];
+$admin_id = $_SESSION['admin_id'];
+$admin_role = $_SESSION['role']; // Check if company_admin or super admin
+$admin_company_id = $_SESSION['a_company_id']; // Store company_id if company_admin
 
-    // Check which button was clicked and set the status accordingly
-    if (isset($_POST['approve_btn'])) {
-        $status = 'Approved';
-    } elseif (isset($_POST['reject_btn'])) {
-        $status = 'Rejected';
-    } elseif (isset($_POST['pending_btn'])) {
-        $status = 'Pending';
+if (isset($_POST['approve_btn'])) {
+
+    $leave_id = $_POST['approve_lid'];
+
+    // Check if leave is already approved or rejected
+    $query = "SELECT l_status_id,company_id FROM leave_master WHERE l_id = $leave_id";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    if (($row['l_status_id'] == 1 or $row['l_status_id'] == 3) and ($row['company_id'] == $admin_company_id or $admin_role == "superadmin")) {
+        $updateQuery = "UPDATE leave_master SET l_status_id = 2, l_approved_by = $admin_id WHERE l_id = $leave_id";
+        mysqli_query($conn, $updateQuery);
+        $_SESSION['success_message'] = "Leave Approved Successfully !";
     } else {
-        die("Invalid request.");
+        $_SESSION['error_message'] = "You Are Not Authorize To Approve !";
+    }
+    header("Location: manage_leave.php");
+    exit();
+}
+
+if (isset($_POST['reject_btn'])) {
+    $leave_id = $_POST['reject_lid'];
+
+    // Check if leave is already approved or rejected
+    $query = "SELECT l_status_id,company_id FROM leave_master WHERE l_id = $leave_id";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    if (($row['l_status_id'] == 1 or $row['l_status_id'] == 2) and ($row['company_id'] == $admin_company_id or $admin_role == "superadmin")) {
+        $updateQuery = "UPDATE leave_master SET l_status_id = 3, l_approved_by = $admin_id WHERE l_id = $leave_id";
+        mysqli_query($conn, $updateQuery);
+        $_SESSION['success_message'] = "Leave Rejected Successfully !";
+    } else {
+        $_SESSION['error_message'] = "You Are Not Authorize To Approve !";
+    }
+    header("Location: manage_leave.php");
+    exit();
+}
+
+// employee delete code and edit 
+
+if (isset($_GET['emp_del'])) {
+
+    $emp_id = intval($_GET['emp_del']); // Convert to integer for security
+
+    $sql = "UPDATE user_master SET u_is_delete = 1 WHERE u_id = '$emp_id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success_message'] = "Employee Deleted successfully!";
+        header("Location: manage_employee.php");
+        exit;
+    } else {
+        $_SESSION['error_message'] = 'Error deleting record !';
+        header('Location: manage_employee.php');
+        exit;
+    }
+}
+
+
+// for emp update of salary
+if (isset($_POST['update_employee_btn'])) {
+
+    $u_id = $_POST['emp_u_id'];
+    $u_name = $_POST['u_name'];
+    $u_email = $_POST['u_email'];
+    $u_phone = $_POST['u_phone'];
+    $u_dob = $_POST['u_dob'];
+    $u_joining_Date = $_POST['u_joining_Date'];
+    $u_salary = $_POST['u_salary'];
+    $dept_id = $_POST['dept_id'];
+    $position_id = $_POST['position_id'];
+
+    // // Fetch old image name from database
+    // $query = "SELECT u_profile_photo FROM user_master WHERE u_id = '$u_id'";
+    // $result = mysqli_query($conn, $query);
+    // $row = mysqli_fetch_assoc($result);
+    // $old_image = $row['u_profile_photo'];
+
+
+    // Image Upload Logic
+    if (!empty($_FILES['profile-photo']['name'])) {
+        $image_name =$_FILES['profile-photo']['name'];
+        $image_tmp = $_FILES['profile-photo']['tmp_name'];
+        $upload_path = "assets/upload_img/employee_img/" . $image_name;
+
+        // Unlink old image if exists
+        if (!empty($old_image) && file_exists("assets/upload_img/employee_img/" . $old_image)) {
+            unlink("assets/upload_img/employee_img/" . $old_image);
+        }
+
+        // Move new image to upload folder
+        move_uploaded_file($image_tmp, $upload_path);
+
+        // Update query with new image
+        $update_query = "UPDATE user_master SET 
+            u_name = '$u_name', 
+            u_email = '$u_email', 
+            u_phone = '$u_phone', 
+            u_dob = '$u_dob', 
+            u_joining_Date = '$u_joining_Date', 
+            u_salary = '$u_salary', 
+            dept_id = '$dept_id', 
+            position_id = '$position_id', 
+            u_profile_photo = '$image_name' 
+        WHERE u_id = '$u_id'";
+    } else {
+        // Update query without changing image
+        $update_query = "UPDATE user_master SET 
+            u_name = '$u_name', 
+            u_email = '$u_email', 
+            u_phone = '$u_phone', 
+            u_dob = '$u_dob', 
+            u_joining_Date = '$u_joining_Date', 
+            u_salary = '$u_salary', 
+            dept_id = '$dept_id', 
+            position_id = '$position_id'
+        WHERE u_id = '$u_id'";
     }
 
-    // Secure SQL Query (Prepared Statement)
-    $sql = "UPDATE leave_status SET status_name = ? WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "si", $status, $id);
-
-    // Execute the query
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Status updated successfully!";
+    if (mysqli_query($conn, $update_query)) {
+        $_SESSION['success_message'] = "Employee Updated successfully!";
+        header("Location: manage_employee.php");
+        exit;
     } else {
-        echo "Error updating status: " . mysqli_error($conn);
+        $_SESSION['error_message'] = 'Error Updating record !';
+        header('Location: manage_employee.php');
+        exit;
     }
 }
 
 mysqli_close($conn);
+
+?>

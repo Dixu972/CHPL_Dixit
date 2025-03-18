@@ -2,6 +2,17 @@
 
 session_start();
 
+include 'controller/dbconfig.php';
+$company_options = "";
+
+// fetch data
+$company = "SELECT company_id, company_name FROM company_master";
+$result = mysqli_query($conn, $company);
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $company_options .= "<option value='{$row['company_id']}'>{$row['company_name']}</option>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +55,7 @@ session_start();
 
                 <form class="login100-form validate-form" action="action_code.php" method="post">
                     <span class="login100-form-title">
-                        <span class="h1 text-danger">A</span>dmin Registration
+                        <span class="h1 text-danger">A</span>dmin <span class="h1 text-danger">C</span>ompany Registration
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Name is required">
@@ -72,16 +83,40 @@ session_start();
                     </div>
 
                     <div class="wrap-input100 validate-input dropdown-wrapper" data-validate="Role is required">
-                        <select class="input100" name="role" id="role">
-                                <option value="" disabled selected>Select Your Role</option>
-                                <option value="superadmin">Super Admin</option>
-                                <option value="company_admin">Company Admin</option>
+                        <select class="input100" name="role" id="role" onchange="toggleCompanyDropdown()">
+                            <option value="" disabled selected>Select Your Role</option>
+                            <option value="superadmin">Super Admin</option>
+                            <option value="company_admin">Company Admin</option>
                         </select>
                         <span class="symbol-input100">
                             <i class="fa fa-user-circle" aria-hidden="true"></i>
                         </span>
                     </div>
 
+                    <!-- Company Dropdown (Hidden by Default) -->
+                    <div class="wrap-input100 validate-input dropdown-wrapper" id="companyDropdown" style="display: none;" data-validate="Company is required">
+                        <select class="input100" name="a_company_id">
+                            <option value="" disabled selected>Select Your Company</option>
+                            <?= $company_options; ?>
+                        </select>
+                        <span class="symbol-input100">
+                            <i class="fa fa-building" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <script>
+                        function toggleCompanyDropdown() {
+                            var role = document.getElementById("role").value;
+                            var companyDropdown = document.getElementById("companyDropdown");
+
+                            if (role === "company_admin") {
+                                companyDropdown.style.display = "block";
+                            } else {
+                                companyDropdown.style.display = "none";
+                            }
+                        }
+                    </script>
+
+                    <!-- end of company dropdown -->
                     <div class="container-login100-form-btn">
                         <button type="submit" name="register_ad_btn" class="login100-form-btn">
                             Register

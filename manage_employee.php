@@ -4,6 +4,10 @@ include_once 'controller/access_control.php';
 include 'common_pages/header.php';
 include 'controller/dbconfig.php';
 
+$admin_company_id = $_SESSION['a_company_id']; // Store company_id if company_admin
+$admin_role = $_SESSION['role']; // Get role
+
+
 // fetch data
 $sql = "SELECT 
     u.u_id, 
@@ -26,6 +30,11 @@ LEFT JOIN dept_master d ON u.dept_id = d.dept_id
 LEFT JOIN position_master p ON u.position_id = p.position_id
 LEFT JOIN company_master c ON u.company_id = c.company_id
 WHERE u.u_is_delete = 0";
+
+// If not superadmin, filter by company
+if ($admin_role != "superadmin") {
+    $sql .= " AND u.company_id = $admin_company_id";
+}
 
 $result = mysqli_query($conn, $sql);
 
@@ -85,12 +94,12 @@ $result = mysqli_query($conn, $sql);
                                             <td><?php echo $u['gender'];?></td>
                                             <td><?php echo $u['company_name'];?></td>
                                             <td><?php echo $u['u_joining_Date'];?></td>
-                                            <td><?php echo $u['u_salary'];?></td>
+                                            <td><?php echo !empty($u['u_salary']) ? $u['u_salary'] : 'Shortly Update !';?></td>
                                             <td>
                                             <?php
                                                 if ($_SESSION['role'] == 'superadmin') {
                                                 ?>
-                                                <a href="#" class="btn btn-danger">Delete</a>
+                                                <a href="action_code.php?emp_del=<?php echo $u['u_id'];?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Employee ?')">Delete</a>
                                                 <?php
                                                 } else {
                                                 ?>
@@ -98,7 +107,7 @@ $result = mysqli_query($conn, $sql);
                                                 <?php
                                                 }
                                                 ?>
-                                                <a href="#" class="btn btn-info emp-bt">EDIT</a>
+                                                <a href="edit_employee.php?edit_emp_id=<?php echo $u['u_id'];?>" class="btn btn-info emp-bt">EDIT</a>
                                             </td>
                                         </tr>
                                     <?php  } ?>
@@ -112,71 +121,6 @@ $result = mysqli_query($conn, $sql);
             </div>
         </div>
         <!-- /. ROW  -->
-        <div class="row">
-            <div class="col-md-6">
-                <!--   Kitchen Sink -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Leave Table
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- End  Kitchen Sink -->
-            </div>
-            <div class="col-md-6">
-                <!--   Basic Table  -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Attendance Table
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- End  Basic Table  -->
-            </div>
-        </div>
     </div>
     <!-- /. ROW  -->
 </div>

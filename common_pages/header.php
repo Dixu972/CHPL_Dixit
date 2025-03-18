@@ -52,7 +52,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="welcome.php">Welcome <span style="font-size: 23px"><?php echo ucfirst($_SESSION['role']); ?></span></a>
+                <a class="navbar-brand" href="welcome.php">Welcome <span style="font-size: 23px"> <?php echo strtoupper($_SESSION['admin_name']); ?></span></a>
             </div>
             <div id="time" style="color: white;
 padding: 15px 50px 5px 50px;
@@ -78,9 +78,6 @@ font-size: 16px;"> Current Access : <?php echo date('l, d Y H:i:s', time()); ?> 
                                 <ul class="nav nav-third-level">
                                     <li>
                                         <a href="manage_employee.php">Manage Employee</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit_employee.php">Edit Employee</a>
                                     </li>
                                 </ul>
                             </li>

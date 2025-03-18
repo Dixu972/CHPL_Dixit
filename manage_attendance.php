@@ -1,27 +1,14 @@
 <?php
 
 include_once 'controller/access_control.php';
+
 include 'common_pages/header.php';
 include 'controller/dbconfig.php';
 
-$dep_com_id = $_SESSION['a_company_id'];
+// fetch data
+$attendance = "SELECT a.*,u.u_name,att.a_status_name FROM `attendance_master` as a LEFT JOIN user_master as u ON a.u_id = u.u_id LEFT JOIN attendance_status as att ON a.a_status = att.a_status_id ";
 
-
-// Check if user is Super Admin
-if ($_SESSION['role'] == 'superadmin') {
-    $dept = "SELECT d.dept_id, d.dept_name, c.company_name 
-             FROM dept_master AS d 
-             JOIN company_master AS c ON d.company_id = c.company_id 
-             ORDER BY c.company_name ASC, d.dept_name ASC";
-} else {
-    $dept = "SELECT d.dept_id, d.dept_name, c.company_name 
-             FROM dept_master AS d 
-             JOIN company_master AS c ON d.company_id = c.company_id 
-             WHERE d.company_id = $dep_com_id
-             ORDER BY c.company_name ASC, d.dept_name ASC";
-}
-
-$result=mysqli_query($conn,$dept);
+$result = mysqli_query($conn, $attendance);
 
 ?>
 <!-- /. NAV SIDE  -->
@@ -29,8 +16,8 @@ $result=mysqli_query($conn,$dept);
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>Department Data Table
-                    <a href="add_department.php" class="btn btn-info" style="float:right;">Add Department</a>
+                <h2>Attendance Management Table
+                    <!-- <a href="add_company.php" class="btn btn-info" style="float:right;">Add Company</a> -->
                 </h2>
             </div>
         </div>
@@ -49,23 +36,27 @@ $result=mysqli_query($conn,$dept);
                             <table class="table table-striped table-responsive table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Department ID</th>
-                                        <th>Company Name</th>
-                                        <th>Department Name</th>
+                                        <th>Attendance ID</th>
+                                        <th>User Name</th>
+                                        <th>Check_In Time</th>
+                                        <th>Check_Out Time</th>
+                                        <th>Attendance Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($result as $d) { ?>
+                                    <?php foreach ($result as $a) { ?>
                                         <tr class="odd gradeX">
-                                            <td><?php echo $d['dept_id']; ?></td>
-                                            <td><?php echo $d['company_name']; ?></td>
-                                            <td><?php echo $d['dept_name']; ?></td>
+                                            <td><?php echo $a['a_id']; ?></td>
+                                            <td><?php echo $a['u_name']; ?></td>
+                                            <td><?php echo $a['a_check_in_time']; ?></td>
+                                            <td><?php echo $a['a_check_out_time']; ?></td>
+                                            <td><?php echo $a['a_status_name']; ?></td>
                                             <td>
                                                 <?php
                                                 if ($_SESSION['role'] == 'superadmin') {
                                                 ?>
-                                                    <a href="action_code.php?del_dept_id=<?php echo $d['dept_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Department ?')">Delete</a>
+                                                    <a href="action_code.php?delete_attendance=<?php // echo $a['a_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this company?');">Delete</a>
                                                 <?php
                                                 } else {
                                                 ?>
@@ -73,7 +64,7 @@ $result=mysqli_query($conn,$dept);
                                                 <?php
                                                 }
                                                 ?>
-                                                <a href="edit_department.php?e_dept_id=<?php echo $d['dept_id']; ?>" class="btn btn-info">EDIT</a>
+                                                <a href="edit_attendance.php?att_id=<?php // echo  $a['a_id']; ?>" class="btn btn-info comp-bt">EDIT</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -94,5 +85,6 @@ $result=mysqli_query($conn,$dept);
 <!-- /. PAGE INNER  -->
 </div>
 
-<?php include 'common_pages/footer.php'; ?>
 
+
+<?php include 'common_pages/footer.php'; ?>
