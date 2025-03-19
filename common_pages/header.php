@@ -38,7 +38,16 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- jQuery for AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
+    <style>
+        /* Make error messages red */
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
 
 </head>
 

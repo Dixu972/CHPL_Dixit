@@ -7,12 +7,19 @@ include 'controller/dbconfig.php';
 
 // for admin registration
 
-if (isset($_POST['register_ad_btn'])) {
-    $admin_name = $_POST['admin_name'];
-    $admin_email = $_POST['a_email'];
-    $admin_pass = password_hash($_POST['a_password'], PASSWORD_DEFAULT); // Secure password
-    $role = $_POST['role'];
-    $a_company_id = $_POST['a_company_id'];
+if (isset($_POST['a_register'])) {
+    $admin_name = trim($_POST['admin_name']);
+    $admin_email = trim($_POST['a_email']);
+    $admin_pass = password_hash(trim($_POST['a_password']), PASSWORD_DEFAULT); // Secure password
+    $role =trim($_POST['role']);
+    $a_company_id =trim($_POST['a_company_id']);
+
+    // Check if any field is empty
+    if (empty($admin_name) || empty($admin_email) || empty($admin_pass) || empty($role) || ($role == 'company_admin' && empty($a_company_id))) {
+        $_SESSION['error_message'] = "All fields are required!";
+        header("Location: admin_reg.php");
+        exit();
+    }
 
     // Check if email already exists
     $checkEmail = "SELECT * FROM admin_master WHERE admin_email = '$admin_email'";
@@ -41,7 +48,7 @@ if (isset($_POST['register_ad_btn'])) {
 
 
 // login code
-if (isset($_POST['login'])) {
+if (isset($_POST['login_btn'])) {
     $a_email = $_POST['a_email'];
     $a_password = $_POST['a_password'];
 

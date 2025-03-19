@@ -27,6 +27,9 @@ if (isset($_SESSION['error_message'])) {
 <!-- DATA TABLE SCRIPTS -->
 <script src="assets/js/dataTables/jquery.dataTables.js"></script>
 <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<!-- jQuery Validation Plugin -->
+<script src="assets/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
@@ -79,8 +82,6 @@ if (isset($_SESSION['error_message'])) {
 <script src="assets/js/custom.js"></script>
 <!-- CUSTOM SCRIPTS -->
 <script src="assets/js/custom.js"></script>
-
-
 
 </body>
 

@@ -42,6 +42,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 
+
 </head>
 
 <body>
@@ -52,14 +53,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="login100-pic js-tilt" data-tilt>
                     <img src="assets/login_assets/images/img-01.png" alt="IMG">
                 </div>
-
                 <form class="login100-form validate-form" action="action_code.php" method="post">
                     <span class="login100-form-title">
                         <span class="h1 text-danger">A</span>dmin <span class="h1 text-danger">C</span>ompany Registration
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Name is required">
-                        <input class="input100" type="text" name="admin_name" id="admin_name" placeholder="Enter Full Name">
+                        <input class="input100" type="text" name="admin_name" id="admin_name" placeholder="Enter Name" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -67,7 +67,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Email is required">
-                        <input class="input100" type="email" name="a_email" id="a_email" placeholder="Enter Email">
+                        <input class="input100" type="email" name="a_email" id="a_email" placeholder="Enter Email" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -75,14 +75,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" id="a_password" name="a_password" placeholder="Enter Password">
+                        <input class="input100" type="password" id="a_password" name="a_password" placeholder="Enter Password" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
 
-                    <div class="wrap-input100 validate-input dropdown-wrapper" data-validate="Role is required">
+                    <div class="wrap-input100 validate-input dropdown-wrapper" data-validate="Role is required" required>
                         <select class="input100" name="role" id="role" onchange="toggleCompanyDropdown()">
                             <option value="" disabled selected>Select Your Role</option>
                             <option value="superadmin">Super Admin</option>
@@ -95,7 +95,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                     <!-- Company Dropdown (Hidden by Default) -->
                     <div class="wrap-input100 validate-input dropdown-wrapper" id="companyDropdown" style="display: none;" data-validate="Company is required">
-                        <select class="input100" name="a_company_id">
+                        <select class="input100" name="a_company_id" >
                             <option value="" disabled selected>Select Your Company</option>
                             <?= $company_options; ?>
                         </select>
@@ -118,7 +118,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                     <!-- end of company dropdown -->
                     <div class="container-login100-form-btn">
-                        <button type="submit" name="register_ad_btn" class="login100-form-btn">
+                        <button type="submit" name="a_register" class="login100-form-btn">
                             Register
                         </button>
                     </div>
@@ -176,6 +176,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     </script>
     <!--===============================================================================================-->
     <script src="assets/login_assets/js/main.js"></script>
+
 
 </body>
 

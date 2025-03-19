@@ -25,7 +25,7 @@ include 'controller/dbconfig.php';
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <form role="form" method="post" action="action_code.php">
+                            <form role="form" id="posi_form" method="post" action="action_code.php">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="company_id">Company Name:</label>
@@ -69,4 +69,34 @@ include 'controller/dbconfig.php';
 </div>
 <!-- /. PAGE WRAPPER  -->
 </div>
+<script>
+    $(document).ready(function(){
+        $("#posi_form").validate({
+            rules: {
+                company_id: {
+                    required: true
+                },
+                dept_id:{
+                    required:true
+                },
+                position_name: {
+                    required: true,
+                    minlength: 3
+                }
+            },
+            message: {
+                company_id: {
+                    required: "Please select a company"
+                },
+                dept_id: {
+                    required: "Please select department"
+                },
+                position_name: {
+                    required: "Please enter the Position name",
+                    minlength: "Position name must be at least 3 characters long"
+                }
+            }
+        });
+    });
+</script>
 <?php include 'common_pages/footer.php'; ?>

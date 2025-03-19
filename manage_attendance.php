@@ -56,7 +56,7 @@ $result = mysqli_query($conn, $attendance);
                                                 <?php
                                                 if ($_SESSION['role'] == 'superadmin') {
                                                 ?>
-                                                    <a href="action_code.php?delete_attendance=<?php // echo $a['a_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this company?');">Delete</a>
+                                                    <!-- <a href="action_code.php?delete_attendance=<?php // echo $a['a_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this company?');">Delete</a> -->
                                                 <?php
                                                 } else {
                                                 ?>
@@ -64,7 +64,7 @@ $result = mysqli_query($conn, $attendance);
                                                 <?php
                                                 }
                                                 ?>
-                                                <a href="edit_attendance.php?att_id=<?php // echo  $a['a_id']; ?>" class="btn btn-info comp-bt">EDIT</a>
+                                                <a href="edit_attendance.php?att_id=<?php echo  $a['a_id']; ?>" class="btn btn-info">EDIT</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

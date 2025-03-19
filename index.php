@@ -64,7 +64,7 @@ session_start();
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button type="submit" name="login" class="login100-form-btn">
+						<button type="submit" name="login_btn" class="login100-form-btn">
 							Login
 						</button>
 					</div>

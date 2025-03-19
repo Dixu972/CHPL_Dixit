@@ -24,11 +24,11 @@ include 'common_pages/header.php';
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <form role="form" method="post" action="action_code.php" enctype="multipart/form-data">
+                            <form role="form" id="dept_form" method="post" action="action_code.php">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="company_id">Company Name:</label>
-                                        <select class="form-control" name="company_id" id="company_id" required>
+                                        <select class="form-control" name="company_id" id="company_id">
                                             <option value="">Select Company</option>
                                             <?php
                                             include 'controller/dbconfig.php';
@@ -36,7 +36,7 @@ include 'common_pages/header.php';
                                             $result = mysqli_query($conn, $query);
 
                                             while ($row = mysqli_fetch_assoc($result)) {
-                                                echo "<option value='" .htmlspecialchars($row['company_id']) . "'>" . htmlspecialchars($row['company_name']) . "</option>";
+                                                echo "<option value='" . htmlspecialchars($row['company_id']) . "'>" . htmlspecialchars($row['company_name']) . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -44,7 +44,7 @@ include 'common_pages/header.php';
 
                                     <div class="form-group">
                                         <label>Department Name :</label>
-                                        <input type="text" class="form-control" name="dept_name" id="dept_name" placeholder="Enter Department Name" required />
+                                        <input type="text" class="form-control" name="dept_name" id="dept_name" placeholder="Enter Department Name" />
                                     </div>
                                     <button type="submit" name="reg_dept" class="btn btn-primary">Submit</button>
                                     <a href="manage_department.php" class="btn btn-danger">Cancel</a>
@@ -59,7 +59,28 @@ include 'common_pages/header.php';
     </div>
 </div>
 <!-- /. PAGE INNER  -->
-</div>
-<!-- /. PAGE WRAPPER  -->
-</div>
+<script>
+    $(document).ready(function() {
+        $("#dept_form").validate({
+            rules: {
+                company_id: {
+                    required: true
+                },
+                dept_name: {
+                    required: true,
+                    minlength: 3
+                }
+            },
+            messages: {
+                company_id: {
+                    required: "Please select a company"
+                },
+                dept_name: {
+                    required: "Please enter the department name",
+                    minlength: "Department name must be at least 3 characters long"
+                }
+            }
+        });
+    });
+</script>
 <?php include 'common_pages/footer.php'; ?>

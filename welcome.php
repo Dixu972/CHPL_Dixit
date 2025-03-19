@@ -93,8 +93,8 @@ if ($result->num_rows > 0) {
                     <div class="text-box">
                         <p class="main-text"><?php echo $monthName; ?> Month</p>
                         <p class="text-muted" style="margin-top: 9px;">Total Working Days: <?php echo $totalWorkingDays; ?></p>
-                        <p class="text-muted">Total Week Offs: <?php echo $totalWeekOffs; ?></p>
                         <p class="text-muted">Left Working Days: <?php echo $leftWorkingDays; ?></p>
+                        <p class="text-muted">Total Week Offs: <?php echo $totalWeekOffs; ?></p>
                     </div>
                 </div>
             </div>
